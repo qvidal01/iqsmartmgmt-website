@@ -408,25 +408,140 @@
             });
         });
         
-        // Form submission handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Here you would typically send this to your backend
-            // For now, we'll just log it and show an alert
-            console.log('Form submitted:', formData);
-            alert('Thank you for your message! We will get back to you soon.');
+        // Form submission handler with API integration
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Get form elements
+    const submitButton = this.querySelector('.submit-button');
+    const originalButtonText = submitButton.textContent;
+    
+    // Disable button and show loading state
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    
+    // Get form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value,
+        website: document.getElementById('website')?.value || '' // Honeypot field
+    };
+    
+    try {
+        // FOR NOW: Use your local Synology IP for testing
+        // Replace 192.168.1.XXX with your actual Synology IP address
+        const API_URL = 'http://192.168.0.25/api/api.php'; 
+        
+        // Later, you'll change this to:
+        // const API_URL = 'https://api.iqsmartmgmt.com/api/api.php';
+        
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Success! Show success message
+            showNotification('success', data.message || 'Message sent successfully!');
             
             // Reset form
             this.reset();
-        });
+        } else {
+            // Error from server
+            showNotification('error', data.error || 'Something went wrong. Please try again.');
+            
+            // Show validation errors if any
+            if (data.errors && Array.isArray(data.errors)) {
+                data.errors.forEach(error => {
+                    console.error('Validation error:', error);
+                });
+            }
+        }
+    } catch (error) {
+        // Network or other error
+        console.error('Error submitting form:', error);
+        showNotification('error', 'Unable to send message. Please check your connection and try again.');
+    } finally {
+        // Re-enable button
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    }
+});
+
+// Notification system
+function showNotification(type, message) {
+    // Remove any existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 5px;
+        color: white;
+        font-weight: 500;
+        z-index: 9999;
+        animation: slideIn 0.3s ease;
+        max-width: 300px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        background-color: ${type === 'success' ? '#10b981' : '#ef4444'};
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
+// Add animation styles for notifications
+if (!document.getElementById('notification-styles')) {
+    const style = document.createElement('style');
+    style.id = 'notification-styles';
+    style.textContent = `
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
         
         // Add scroll effect to navigation
         window.addEventListener('scroll', function() {
