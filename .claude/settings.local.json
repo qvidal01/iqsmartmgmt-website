@@ -4,7 +4,10 @@
       "Bash(dir)",
       "Bash(git init:*)",
       "Bash(move:*)",
-      "Bash(ren:*)"
+      "Bash(ren:*)",
+      "Bash(ssh:*)",
+      "Read(/B:\\iqsmartmgmt/**)",
+      "Bash(nslookup:*)"
     ],
     "deny": [],
     "ask": []
