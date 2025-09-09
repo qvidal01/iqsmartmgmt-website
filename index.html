@@ -429,12 +429,8 @@ document.getElementById('contactForm').addEventListener('submit', async function
     };
     
     try {
-        // FOR NOW: Use your local Synology IP for testing
-        // Replace 192.168.1.XXX with your actual Synology IP address
-        const API_URL = 'http://192.168.0.25/api/api.php'; 
-        
-        // Later, you'll change this to:
-        // const API_URL = 'https://api.iqsmartmgmt.com/api/api.php';
+        // Production API URL - replace with your actual domain/IP
+        const API_URL = 'https://api.iqsmartmgmt.com/api/api.php';
         
         const response = await fetch(API_URL, {
             method: 'POST',
