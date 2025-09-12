@@ -146,15 +146,74 @@
         
         .feature-card {
             background: var(--white);
-            padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            perspective: 1000px;
+            height: 280px;
         }
         
         .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .feature-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-back {
+            background: var(--gradient);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .card-back h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .card-back ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .card-back li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card-back li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
         }
         
         .feature-icon {
@@ -314,34 +373,118 @@
             <h2 class="section-title">Our Core Features</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Data Analytics</h3>
-                    <p>Advanced analytics tools to transform your data into actionable insights for better decision making.</p>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">📊</div>
+                            <h3>Data Analytics</h3>
+                            <p>Advanced analytics tools to transform your data into actionable insights for better decision making.</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>Data Analytics Examples</h3>
+                            <ul>
+                                <li>Real-time sales dashboard</li>
+                                <li>Customer behavior analysis</li>
+                                <li>Revenue forecasting models</li>
+                                <li>Market trend identification</li>
+                                <li>Performance KPI tracking</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI-Powered Automation</h3>
-                    <p>Leverage artificial intelligence to automate routine tasks and optimize your workflows.</p>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">🤖</div>
+                            <h3>AI-Powered Automation</h3>
+                            <p>Leverage artificial intelligence to automate routine tasks and optimize your workflows.</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>AI Automation Examples</h3>
+                            <ul>
+                                <li>Email response automation</li>
+                                <li>Invoice processing & approval</li>
+                                <li>Customer support chatbots</li>
+                                <li>Inventory management alerts</li>
+                                <li>Meeting scheduling optimization</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">☁️</div>
-                    <h3>Cloud Integration</h3>
-                    <p>Seamless integration with cloud services for scalable and flexible management solutions.</p>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">☁️</div>
+                            <h3>Cloud Integration</h3>
+                            <p>Seamless integration with cloud services for scalable and flexible management solutions.</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>Cloud Integration Examples</h3>
+                            <ul>
+                                <li>AWS/Azure/GCP connectivity</li>
+                                <li>Multi-cloud data sync</li>
+                                <li>Serverless function deployment</li>
+                                <li>Cloud storage optimization</li>
+                                <li>Auto-scaling infrastructure</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Security First</h3>
-                    <p>Enterprise-grade security to protect your data and ensure compliance with industry standards.</p>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">🔒</div>
+                            <h3>Security First</h3>
+                            <p>Enterprise-grade security to protect your data and ensure compliance with industry standards.</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>Security Examples</h3>
+                            <ul>
+                                <li>End-to-end data encryption</li>
+                                <li>Multi-factor authentication</li>
+                                <li>GDPR/HIPAA compliance tools</li>
+                                <li>Vulnerability scanning</li>
+                                <li>Access control & audit logs</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>Performance Tracking</h3>
-                    <p>Real-time monitoring and reporting to track KPIs and measure business performance.</p>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">📈</div>
+                            <h3>Performance Tracking</h3>
+                            <p>Real-time monitoring and reporting to track KPIs and measure business performance.</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>Performance Tracking Examples</h3>
+                            <ul>
+                                <li>Live performance metrics</li>
+                                <li>Custom reporting dashboards</li>
+                                <li>Goal tracking & alerts</li>
+                                <li>Team productivity analysis</li>
+                                <li>ROI measurement tools</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Custom Solutions</h3>
-                    <p>Tailored management solutions designed to meet your specific business requirements.</p>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Custom Solutions</h3>
+                            <p>Tailored management solutions designed to meet your specific business requirements.</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>Custom Solution Examples</h3>
+                            <ul>
+                                <li>Industry-specific workflows</li>
+                                <li>Custom API integrations</li>
+                                <li>Branded user interfaces</li>
+                                <li>Specialized reporting tools</li>
+                                <li>Bespoke automation rules</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -410,6 +553,13 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // Feature card flip functionality
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('flipped');
             });
         });
         
