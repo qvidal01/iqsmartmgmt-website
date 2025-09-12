@@ -243,6 +243,112 @@
             0%, 100% { transform: rotateY(0deg); }
             50% { transform: rotateY(180deg); }
         }
+
+        /* Service category navigation */
+        .service-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .service-nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .service-nav a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Category headings */
+        .category-heading {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 4rem 0 2rem 0;
+            text-align: left;
+        }
+
+        .category-heading:first-of-type {
+            margin-top: 2rem;
+        }
+
+        /* Team profiles section */
+        .team-section {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--bg-light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem auto;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 4px solid var(--bg-light);
+        }
+
+        .team-card h4 {
+            color: var(--text-dark);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .team-card .role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .team-card .bio {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .team-heading {
+            color: var(--text-dark);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
         
         .feature-icon {
             font-size: 3rem;
@@ -399,7 +505,19 @@
     <section class="features" id="features">
         <div class="container">
             <h2 class="section-title">Our Core Features & Services</h2>
+            
+            <!-- Navigation Menu -->
+            <div class="service-nav">
+                <a href="#business">Business Solutions</a>
+                <a href="#security">Security & Reliability</a>
+                <a href="#smart-home">Smart Home & Lifestyle</a>
+                <a href="#knowledge">Knowledge & Strategy</a>
+            </div>
+
+            <!-- Business Solutions -->
+            <h3 id="business" class="category-heading">Business Solutions</h3>
             <div class="features-grid">
+                <!-- Data Analytics -->
                 <div class="feature-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -423,6 +541,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- AI-Powered Automation -->
                 <div class="feature-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -446,6 +565,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Cloud Integration -->
                 <div class="feature-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -469,29 +589,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🔒</div>
-                            <h3>Security First</h3>
-                            <p>Enterprise-grade security to protect your data and ensure compliance with industry standards.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                                <span>Click to flip</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Security Examples</h3>
-                            <ul>
-                                <li>End-to-end data encryption</li>
-                                <li>Multi-factor authentication</li>
-                                <li>GDPR/HIPAA compliance tools</li>
-                                <li>Vulnerability scanning</li>
-                                <li>Access control & audit logs</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <!-- Performance Tracking -->
                 <div class="feature-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -515,6 +613,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Custom Solutions -->
                 <div class="feature-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -538,29 +637,36 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Security & Reliability -->
+            <h3 id="security" class="category-heading">Security & Reliability</h3>
+            <div class="features-grid">
+                <!-- Security First -->
                 <div class="feature-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="feature-icon">🏠</div>
-                            <h3>Home Automation</h3>
-                            <p>Smart device setup, voice assistant integration, and custom automations for comfort and energy savings.</p>
+                            <div class="feature-icon">🔒</div>
+                            <h3>Security First</h3>
+                            <p>Enterprise-grade security to protect your data and ensure compliance with industry standards.</p>
                             <div class="flip-indicator">
                                 <span class="flip-icon">🔄</span>
                                 <span>Click to flip</span>
                             </div>
                         </div>
                         <div class="card-back">
-                            <h3>Home Automation Examples</h3>
+                            <h3>Security Examples</h3>
                             <ul>
-                                <li>Smart lighting & climate control</li>
-                                <li>Voice assistant setup (Alexa/Google)</li>
-                                <li>Security system integration</li>
-                                <li>Energy monitoring & optimization</li>
-                                <li>Custom automation routines</li>
+                                <li>End-to-end data encryption</li>
+                                <li>Multi-factor authentication</li>
+                                <li>GDPR/HIPAA compliance tools</li>
+                                <li>Vulnerability scanning</li>
+                                <li>Access control & audit logs</li>
                             </ul>
                         </div>
                     </div>
                 </div>
+                <!-- Security & Cameras -->
                 <div class="feature-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -584,75 +690,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🎓</div>
-                            <h3>Training & Workshops</h3>
-                            <p>Hands-on training sessions and workshops covering cybersecurity, cloud tools, and smart home tech.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                                <span>Click to flip</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Training & Workshop Examples</h3>
-                            <ul>
-                                <li>Cybersecurity awareness training</li>
-                                <li>Cloud platform workshops</li>
-                                <li>Smart home technology sessions</li>
-                                <li>Digital literacy programs</li>
-                                <li>Custom technical training</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🌐</div>
-                            <h3>Networking Solutions</h3>
-                            <p>Wi-Fi optimization, secure business networks, and advanced setups like VLANs and remote access.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                                <span>Click to flip</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Networking Solution Examples</h3>
-                            <ul>
-                                <li>Enterprise Wi-Fi setup</li>
-                                <li>VLAN configuration</li>
-                                <li>VPN & remote access</li>
-                                <li>Network security implementation</li>
-                                <li>Bandwidth optimization</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">💡</div>
-                            <h3>Tech Consulting</h3>
-                            <p>Expert consulting to design tailored IT and automation strategies, hardware recommendations, and planning.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                                <span>Click to flip</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Tech Consulting Examples</h3>
-                            <ul>
-                                <li>IT strategy development</li>
-                                <li>Hardware selection & procurement</li>
-                                <li>Technology roadmap planning</li>
-                                <li>Digital transformation guidance</li>
-                                <li>Cost optimization analysis</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <!-- Managed Services -->
                 <div class="feature-card">
                     <div class="card-inner">
                         <div class="card-front">
@@ -677,6 +715,113 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Smart Home & Lifestyle -->
+            <h3 id="smart-home" class="category-heading">Smart Home & Lifestyle</h3>
+            <div class="features-grid">
+                <!-- Home Automation -->
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">🏠</div>
+                            <h3>Home Automation</h3>
+                            <p>Smart device setup, voice assistant integration, and custom automations for comfort and energy savings.</p>
+                            <div class="flip-indicator">
+                                <span class="flip-icon">🔄</span>
+                                <span>Click to flip</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Home Automation Examples</h3>
+                            <ul>
+                                <li>Smart lighting & climate control</li>
+                                <li>Voice assistant setup (Alexa/Google)</li>
+                                <li>Security system integration</li>
+                                <li>Energy monitoring & optimization</li>
+                                <li>Custom automation routines</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Networking Solutions -->
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">🌐</div>
+                            <h3>Networking Solutions</h3>
+                            <p>Wi-Fi optimization, secure business networks, and advanced setups like VLANs and remote access.</p>
+                            <div class="flip-indicator">
+                                <span class="flip-icon">🔄</span>
+                                <span>Click to flip</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Networking Solution Examples</h3>
+                            <ul>
+                                <li>Enterprise Wi-Fi setup</li>
+                                <li>VLAN configuration</li>
+                                <li>VPN & remote access</li>
+                                <li>Network security implementation</li>
+                                <li>Bandwidth optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Knowledge & Strategy -->
+            <h3 id="knowledge" class="category-heading">Knowledge & Strategy</h3>
+            <div class="features-grid">
+                <!-- Tech Consulting -->
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">💡</div>
+                            <h3>Tech Consulting</h3>
+                            <p>Expert consulting to design tailored IT and automation strategies, hardware recommendations, and planning.</p>
+                            <div class="flip-indicator">
+                                <span class="flip-icon">🔄</span>
+                                <span>Click to flip</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Tech Consulting Examples</h3>
+                            <ul>
+                                <li>IT strategy development</li>
+                                <li>Hardware selection & procurement</li>
+                                <li>Technology roadmap planning</li>
+                                <li>Digital transformation guidance</li>
+                                <li>Cost optimization analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Training & Workshops -->
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="feature-icon">🎓</div>
+                            <h3>Training & Workshops</h3>
+                            <p>Hands-on training sessions and workshops covering cybersecurity, cloud tools, and smart home tech.</p>
+                            <div class="flip-indicator">
+                                <span class="flip-icon">🔄</span>
+                                <span>Click to flip</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Training & Workshop Examples</h3>
+                            <ul>
+                                <li>Cybersecurity awareness training</li>
+                                <li>Cloud platform workshops</li>
+                                <li>Smart home technology sessions</li>
+                                <li>Digital literacy programs</li>
+                                <li>Custom technical training</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
     
@@ -694,6 +839,48 @@
                 <p>
                     Our hybrid approach leverages both cloud and on-premise infrastructure, giving you the flexibility to choose the deployment model that best fits your needs while maintaining complete control over your data.
                 </p>
+            </div>
+
+            <!-- Team Section -->
+            <div class="team-section">
+                <h3 class="team-heading">Meet Our Team</h3>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="profile-image">
+                            QV
+                        </div>
+                        <h4>Quinn Vidal</h4>
+                        <div class="role">CEO and President</div>
+                        <p class="bio">Leading IQ Smart Management with a vision for innovative technology solutions. Quinn drives strategic initiatives and ensures our commitment to delivering exceptional intelligent management services to businesses of all sizes.</p>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="profile-image">
+                            MV
+                        </div>
+                        <h4>Melony Vidal</h4>
+                        <div class="role">CTO and Vice President</div>
+                        <p class="bio">Overseeing our technical operations and innovation roadmap. Melony ensures our technology infrastructure remains cutting-edge while maintaining the highest standards of security and performance.</p>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="profile-image">
+                            JV
+                        </div>
+                        <h4>Jayla Vidal</h4>
+                        <div class="role">Director of Customer Engagement</div>
+                        <p class="bio">Dedicated to building strong relationships with our clients and ensuring exceptional customer experiences. Jayla leads our customer success initiatives and maintains our high service satisfaction standards.</p>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="profile-image">
+                            DV
+                        </div>
+                        <h4>Dominic Vidal</h4>
+                        <div class="role">Director of Support Services</div>
+                        <p class="bio">Managing our comprehensive support operations and ensuring clients receive timely, expert assistance. Dominic leads our technical support team and maintains our 24/7 service excellence commitment.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
