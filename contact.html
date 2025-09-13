@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - IQ Smart Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="contact-info">
+                <a href="tel:+1234567890">📞 (123) 456-7890</a>
+                <a href="mailto:info@iqsmartmanagement.com">✉️ info@iqsmartmanagement.com</a>
+            </div>
+            <a href="#" class="client-portal-btn">Client Portal Login</a>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">IQ Smart Management</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Get In Touch</h1>
+        <p>Let's discuss how we can help transform your business</p>
+    </section>
+    
+    <!-- Contact Content -->
+    <section class="contact">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 3rem;">
+                <!-- Contact Form -->
+                <div>
+                    <h2 style="margin-bottom: 2rem; color: var(--text-dark);">Send Us a Message</h2>
+                    <form class="contact-form" id="contactForm" style="margin: 0;">
+                        <input type="text" id="website" name="website" style="display:none;" tabindex="-1" autocomplete="off">
+                        
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required autocomplete="name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required autocomplete="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interest</label>
+                            <select id="service" name="service" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+                                <option value="">Select a service...</option>
+                                <option value="business-intelligence">Business Intelligence</option>
+                                <option value="cloud-solutions">Cloud Solutions</option>
+                                <option value="security">Security Services</option>
+                                <option value="automation">Smart Automation</option>
+                                <option value="smart-home">Smart Home & Office</option>
+                                <option value="consulting">IT Consulting</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required autocomplete="off"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div>
+                    <h2 style="margin-bottom: 2rem; color: var(--text-dark);">Contact Information</h2>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem;">📞 Phone</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;">
+                            Main: (123) 456-7890<br>
+                            Support: (123) 456-7891
+                        </p>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem;">✉️ Email</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;">
+                            General: info@iqsmartmanagement.com<br>
+                            Support: support@iqsmartmanagement.com<br>
+                            Sales: sales@iqsmartmanagement.com
+                        </p>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem;">📍 Office Location</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;">
+                            123 Business Street<br>
+                            Suite 100<br>
+                            Your City, State 12345<br>
+                            United States
+                        </p>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.2rem;">🕒 Business Hours</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;">
+                            Monday - Friday: 9:00 AM - 6:00 PM<br>
+                            Saturday: 10:00 AM - 4:00 PM<br>
+                            Sunday: Closed<br>
+                            <em>24/7 Support Available for Managed Services Clients</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div style="margin-top: 4rem; padding-top: 3rem; border-top: 2px solid #e5e7eb;">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: var(--text-dark);">Frequently Asked Questions</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+                    <div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">How quickly can you respond to support requests?</h4>
+                        <p style="color: var(--text-light);">For managed services clients, we offer 24/7 support with a 1-hour response time. Standard support requests are typically answered within 4 business hours.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">Do you offer free consultations?</h4>
+                        <p style="color: var(--text-light);">Yes! We offer a complimentary 30-minute consultation to discuss your needs and how our services can help your business.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">What areas do you service?</h4>
+                        <p style="color: var(--text-light);">We provide remote services nationwide and on-site services within a 50-mile radius of our office. Special arrangements can be made for larger projects.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">How do your pricing models work?</h4>
+                        <p style="color: var(--text-light);">We offer flexible pricing including project-based, hourly, and monthly retainer options. Contact us for a customized quote based on your specific needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About IQ Smart</h4>
+                <p>Leading provider of intelligent management solutions, helping businesses thrive in the digital age.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html#business-intelligence">Business Intelligence</a></li>
+                    <li><a href="services.html#cloud-solutions">Cloud Solutions</a></li>
+                    <li><a href="services.html#security">Security Services</a></li>
+                    <li><a href="services.html#automation">Smart Automation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li>📞 (123) 456-7890</li>
+                    <li>✉️ info@iqsmartmanagement.com</li>
+                    <li>📍 Your City, State</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 IQ Smart Management. All rights reserved.</p>
+            <p>Powered by Cloudflare & Synology NAS</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Form submission handler with API integration
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form elements
+            const submitButton = this.querySelector('.submit-button');
+            const originalButtonText = submitButton.textContent;
+            
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value,
+                website: document.getElementById('website')?.value || '' // Honeypot field
+            };
+            
+            try {
+                // Production API URL - replace with your actual domain
+                const API_URL = 'https://contact-email-sender.cyberque80.workers.dev';
+                
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Success! Show success message
+                    showNotification('success', data.message || 'Message sent successfully!');
+                    
+                    // Reset form
+                    this.reset();
+                } else {
+                    // Error from server
+                    showNotification('error', data.error || 'Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                // Network or other error
+                console.error('Error submitting form:', error);
+                showNotification('error', 'Unable to send message. Please check your connection and try again.');
+            } finally {
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        });
+        
+        // Notification system
+        function showNotification(type, message) {
+            // Remove any existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+    </script>
+    
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc72f785857e4cc091f5680c36f32132"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

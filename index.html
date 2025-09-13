@@ -4,1070 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IQ Smart Management - Intelligent Solutions</title>
-    
-    <style>
-        /* CSS Variables for easy theme customization */
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --bg-light: #f9fafb;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-        }
-        
-        /* Navigation */
-        nav {
-            background: var(--white);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Hero Section */
-        .hero {
-            margin-top: 60px;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--white);
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 4rem 2rem;
-            background: var(--bg-light);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-dark);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            perspective: 1000px;
-            height: 280px;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-        }
-
-        .feature-card.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 10px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .card-back {
-            background: var(--gradient);
-            color: white;
-            transform: rotateY(180deg);
-        }
-
-        .card-back h3 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-
-        .card-back ul {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-        }
-
-        .card-back li {
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .card-back li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #10b981;
-            font-weight: bold;
-        }
-
-        .flip-indicator {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            display: flex;
-            align-items: center;
-            font-size: 0.75rem;
-            color: var(--text-light);
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-
-        .flip-icon {
-            font-size: 0.9rem;
-            animation: flipHint 2s ease-in-out infinite;
-        }
-
-        .feature-card:hover .flip-indicator {
-            opacity: 1;
-        }
-
-        @keyframes flipHint {
-            0%, 100% { transform: rotateY(0deg); }
-            50% { transform: rotateY(180deg); }
-        }
-
-        /* Service category navigation */
-        .service-nav {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 3rem;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .service-nav a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .service-nav a:hover {
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* Category headings */
-        .category-heading {
-            color: var(--primary-color);
-            font-size: 2rem;
-            font-weight: 600;
-            margin: 4rem 0 2rem 0;
-            text-align: left;
-        }
-
-        .category-heading:first-of-type {
-            margin-top: 2rem;
-        }
-
-        /* Team profiles section */
-        .team-section {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--bg-light);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .team-card {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            perspective: 1000px;
-            min-height: 400px;
-            height: auto;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .team-card-inner {
-            position: relative;
-            width: 100%;
-            min-height: 400px;
-            text-align: center;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-        }
-
-        .team-card.flipped .team-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .team-card-front, .team-card-back {
-            position: absolute;
-            width: 100%;
-            min-height: 400px;
-            backface-visibility: hidden;
-            border-radius: 10px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            overflow: hidden;
-        }
-
-        .team-card-back {
-            background: var(--gradient);
-            color: white;
-            transform: rotateY(180deg);
-        }
-
-        .team-card-back h4 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .team-card-back .personal-info {
-            text-align: left;
-            font-size: 0.8rem;
-            line-height: 1.4;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
-        .team-card-back .personal-info strong {
-            color: #10b981;
-            display: block;
-            margin-top: 0.75rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .team-card-back .personal-info strong:first-child {
-            margin-top: 0;
-        }
-
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem auto;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            border: 4px solid var(--bg-light);
-            overflow: hidden;
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .team-card h4 {
-            color: var(--text-dark);
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .team-card .role {
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .team-card .bio {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .team-heading {
-            color: var(--text-dark);
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .feature-card h3 {
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-        
-        .feature-card p {
-            color: var(--text-light);
-        }
-        
-        /* About Section */
-        .about {
-            padding: 4rem 2rem;
-            background: var(--white);
-        }
-        
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .about-content p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 4rem 2rem;
-            background: var(--bg-light);
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .submit-button {
-            background: var(--gradient);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s;
-            width: 100%;
-        }
-        
-        .submit-button:hover {
-            transform: scale(1.02);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="contact-info">
+                <a href="tel:+1234567890">📞 (123) 456-7890</a>
+                <a href="mailto:info@iqsmartmanagement.com">✉️ info@iqsmartmanagement.com</a>
+            </div>
+            <a href="#" class="client-portal-btn">Client Portal Login</a>
+        </div>
+    </div>
+    
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo">IQ Smart Management</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
     
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
         <div class="hero-content">
             <h1>Intelligent Management Consulting</h1>
             <p>Empowering businesses with smart, data-driven management tools and insights</p>
-            <a href="#features" class="cta-button">Discover Our Solutions</a>
+            <a href="services.html" class="cta-button">Explore Our Services</a>
         </div>
     </section>
     
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- Services Overview Section -->
+    <section class="services-overview">
         <div class="container">
-            <h2 class="section-title">Our Core Features & Services</h2>
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">We bring the latest technologies to your business with our industry-specific solutions</p>
             
-            <!-- Navigation Menu -->
-            <div class="service-nav">
-                <a href="#business">Business Solutions</a>
-                <a href="#security">Security & Reliability</a>
-                <a href="#smart-home">Smart Home & Lifestyle</a>
-                <a href="#knowledge">Knowledge & Strategy</a>
-            </div>
-
-            <!-- Business Solutions -->
-            <h3 id="business" class="category-heading">Business Solutions</h3>
-            <div class="features-grid">
-                <!-- Data Analytics -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">📊</div>
-                            <h3>Data Analytics</h3>
-                            <p>Advanced analytics tools to transform your data into actionable insights for better decision making.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Data Analytics Examples</h3>
-                            <ul>
-                                <li>Real-time sales dashboard</li>
-                                <li>Customer behavior analysis</li>
-                                <li>Revenue forecasting models</li>
-                                <li>Market trend identification</li>
-                                <li>Performance KPI tracking</li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="services-grid">
+                <!-- Business Intelligence -->
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Business Intelligence</h3>
+                    <p>Transform your data into actionable insights with our comprehensive analytics solutions.</p>
+                    <ul class="service-features">
+                        <li>Real-time dashboards</li>
+                        <li>Predictive analytics</li>
+                        <li>Custom reporting</li>
+                        <li>Data visualization</li>
+                    </ul>
+                    <a href="services.html#business-intelligence" class="learn-more-btn">Learn more</a>
                 </div>
-                <!-- AI-Powered Automation -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🤖</div>
-                            <h3>AI-Powered Automation</h3>
-                            <p>Leverage artificial intelligence to automate routine tasks and optimize your workflows.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>AI Automation Examples</h3>
-                            <ul>
-                                <li>Email response automation</li>
-                                <li>Invoice processing & approval</li>
-                                <li>Customer support chatbots</li>
-                                <li>Inventory management alerts</li>
-                                <li>Meeting scheduling optimization</li>
-                            </ul>
-                        </div>
-                    </div>
+                
+                <!-- Cloud Solutions -->
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and migration services for modern businesses.</p>
+                    <ul class="service-features">
+                        <li>Cloud migration</li>
+                        <li>Infrastructure setup</li>
+                        <li>Multi-cloud strategy</li>
+                        <li>Cost optimization</li>
+                    </ul>
+                    <a href="services.html#cloud-solutions" class="learn-more-btn">Learn more</a>
                 </div>
-                <!-- Cloud Integration -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">☁️</div>
-                            <h3>Cloud Integration</h3>
-                            <p>Seamless integration with cloud services for scalable and flexible management solutions.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Cloud Integration Examples</h3>
-                            <ul>
-                                <li>AWS/Azure/GCP connectivity</li>
-                                <li>Multi-cloud data sync</li>
-                                <li>Serverless function deployment</li>
-                                <li>Cloud storage optimization</li>
-                                <li>Auto-scaling infrastructure</li>
-                            </ul>
-                        </div>
-                    </div>
+                
+                <!-- Security Services -->
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Security Services</h3>
+                    <p>Comprehensive security solutions to protect your business and data.</p>
+                    <ul class="service-features">
+                        <li>Security audits</li>
+                        <li>Compliance management</li>
+                        <li>Threat monitoring</li>
+                        <li>Incident response</li>
+                    </ul>
+                    <a href="services.html#security" class="learn-more-btn">Learn more</a>
                 </div>
-                <!-- Performance Tracking -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">📈</div>
-                            <h3>Performance Tracking</h3>
-                            <p>Real-time monitoring and reporting to track KPIs and measure business performance.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Performance Tracking Examples</h3>
-                            <ul>
-                                <li>Live performance metrics</li>
-                                <li>Custom reporting dashboards</li>
-                                <li>Goal tracking & alerts</li>
-                                <li>Team productivity analysis</li>
-                                <li>ROI measurement tools</li>
-                            </ul>
-                        </div>
-                    </div>
+                
+                <!-- Smart Automation -->
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>Smart Automation</h3>
+                    <p>AI-powered automation to streamline operations and boost productivity.</p>
+                    <ul class="service-features">
+                        <li>Process automation</li>
+                        <li>AI integration</li>
+                        <li>Workflow optimization</li>
+                        <li>Custom bot development</li>
+                    </ul>
+                    <a href="services.html#automation" class="learn-more-btn">Learn more</a>
                 </div>
-                <!-- Custom Solutions -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🎯</div>
-                            <h3>Custom Solutions</h3>
-                            <p>Tailored management solutions designed to meet your specific business requirements.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Custom Solution Examples</h3>
-                            <ul>
-                                <li>Industry-specific workflows</li>
-                                <li>Custom API integrations</li>
-                                <li>Branded user interfaces</li>
-                                <li>Specialized reporting tools</li>
-                                <li>Bespoke automation rules</li>
-                            </ul>
-                        </div>
-                    </div>
+                
+                <!-- Home & Office Setup -->
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Smart Home & Office</h3>
+                    <p>Professional installation and setup of smart devices and security systems.</p>
+                    <ul class="service-features">
+                        <li>Smart device setup</li>
+                        <li>CCTV installation</li>
+                        <li>Network configuration</li>
+                        <li>Home automation</li>
+                    </ul>
+                    <a href="services.html#smart-home" class="learn-more-btn">Learn more</a>
                 </div>
-            </div>
-
-            <!-- Security & Reliability -->
-            <h3 id="security" class="category-heading">Security & Reliability</h3>
-            <div class="features-grid">
-                <!-- Security First -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🔒</div>
-                            <h3>Security First</h3>
-                            <p>Enterprise-grade security to protect your data and ensure compliance with industry standards.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Security Examples</h3>
-                            <ul>
-                                <li>End-to-end data encryption</li>
-                                <li>Multi-factor authentication</li>
-                                <li>GDPR/HIPAA compliance tools</li>
-                                <li>Vulnerability scanning</li>
-                                <li>Access control & audit logs</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Security & Cameras -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">📹</div>
-                            <h3>Security & Cameras</h3>
-                            <p>Professional installation of CCTV, smart cameras, alarms, and monitoring systems for peace of mind.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Security & Camera Examples</h3>
-                            <ul>
-                                <li>IP camera installation & setup</li>
-                                <li>Motion detection & alerts</li>
-                                <li>Remote monitoring systems</li>
-                                <li>Smart doorbell integration</li>
-                                <li>24/7 recording & cloud backup</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Managed Services -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🔧</div>
-                            <h3>Managed Services</h3>
-                            <p>Ongoing support, monitoring, and system maintenance to keep your technology running smoothly.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Managed Service Examples</h3>
-                            <ul>
-                                <li>24/7 system monitoring</li>
-                                <li>Preventive maintenance</li>
-                                <li>Help desk & technical support</li>
-                                <li>Software updates & patches</li>
-                                <li>Backup & disaster recovery</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Smart Home & Lifestyle -->
-            <h3 id="smart-home" class="category-heading">Smart Home & Lifestyle</h3>
-            <div class="features-grid">
-                <!-- Home Automation -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🏠</div>
-                            <h3>Home Automation</h3>
-                            <p>Smart device setup, voice assistant integration, and custom automations for comfort and energy savings.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Home Automation Examples</h3>
-                            <ul>
-                                <li>Smart lighting & climate control</li>
-                                <li>Voice assistant setup (Alexa/Google)</li>
-                                <li>Security system integration</li>
-                                <li>Energy monitoring & optimization</li>
-                                <li>Custom automation routines</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Networking Solutions -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🌐</div>
-                            <h3>Networking Solutions</h3>
-                            <p>Wi-Fi optimization, secure business networks, and advanced setups like VLANs and remote access.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Networking Solution Examples</h3>
-                            <ul>
-                                <li>Enterprise Wi-Fi setup</li>
-                                <li>VLAN configuration</li>
-                                <li>VPN & remote access</li>
-                                <li>Network security implementation</li>
-                                <li>Bandwidth optimization</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Knowledge & Strategy -->
-            <h3 id="knowledge" class="category-heading">Knowledge & Strategy</h3>
-            <div class="features-grid">
-                <!-- Tech Consulting -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">💡</div>
-                            <h3>Tech Consulting</h3>
-                            <p>Expert consulting to design tailored IT and automation strategies, hardware recommendations, and planning.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Tech Consulting Examples</h3>
-                            <ul>
-                                <li>IT strategy development</li>
-                                <li>Hardware selection & procurement</li>
-                                <li>Technology roadmap planning</li>
-                                <li>Digital transformation guidance</li>
-                                <li>Cost optimization analysis</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Training & Workshops -->
-                <div class="feature-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="feature-icon">🎓</div>
-                            <h3>Training & Workshops</h3>
-                            <p>Hands-on training sessions and workshops covering cybersecurity, cloud tools, and smart home tech.</p>
-                            <div class="flip-indicator">
-                                <span class="flip-icon">🔄</span>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <h3>Training & Workshop Examples</h3>
-                            <ul>
-                                <li>Cybersecurity awareness training</li>
-                                <li>Cloud platform workshops</li>
-                                <li>Smart home technology sessions</li>
-                                <li>Digital literacy programs</li>
-                                <li>Custom technical training</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">About IQ Smart Management</h2>
-            <div class="about-content">
-                <p>
-                    At IQ Smart Management, we believe in the power of intelligent systems to transform how businesses operate. Our platform combines cutting-edge technology with intuitive design to deliver management solutions that are both powerful and easy to use.
-                </p>
-                <p>
-                    Founded on the principles of innovation and efficiency, we help organizations of all sizes streamline their operations, make data-driven decisions, and achieve sustainable growth in today's competitive landscape.
-                </p>
-                <p>
-                    Our hybrid approach leverages both cloud and on-premise infrastructure, giving you the flexibility to choose the deployment model that best fits your needs while maintaining complete control over your data.
-                </p>
-            </div>
-
-            <!-- Team Section -->
-            <div class="team-section">
-                <h3 class="team-heading">Meet Our Team</h3>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <div class="team-card-inner">
-                            <div class="team-card-front">
-                                <div class="profile-image">
-                                    <img src="images/quinn-vidal.jpg" alt="Quinn Vidal - CEO & Founder">
-                                </div>
-                                <h4>Quinn Vidal</h4>
-                                <div class="role">CEO & Founder</div>
-                                <p class="bio">Leading IQ Smart Management with a vision for innovative technology solutions. Quinn drives strategic initiatives and ensures our commitment to delivering exceptional intelligent management services to businesses of all sizes.</p>
-                                <div class="flip-indicator">
-                                    <span class="flip-icon">🔄</span>
-                                </div>
-                            </div>
-                            <div class="team-card-back">
-                                <h4>Quinn Vidal - Personal</h4>
-                                <div class="personal-info">
-                                    <strong>Education:</strong>
-                                    Bachelor's in Business Administration, focus on Technology Management
-                                    
-                                    <strong>Interests:</strong>
-                                    Innovation in AI and automation, strategic business development, emerging technologies
-                                    
-                                    <strong>Fun Fact:</strong>
-                                    Started coding at age 12 and built the first version of IQ Smart Management as a college project
-                                    
-                                    <strong>Quote:</strong>
-                                    "Technology should empower people, not replace them. Our goal is to make intelligent systems accessible to everyone."
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="team-card">
-                        <div class="team-card-inner">
-                            <div class="team-card-front">
-                                <div class="profile-image">
-                                    <img src="images/melony-vidal.jpg" alt="Melony Vidal - President & CFO">
-                                </div>
-                                <h4>Melony Vidal</h4>
-                                <div class="role">President & CFO</div>
-                                <p class="bio">Overseeing our technical operations and innovation roadmap. Melony ensures our technology infrastructure remains cutting-edge while maintaining the highest standards of security and performance.</p>
-                                <div class="flip-indicator">
-                                    <span class="flip-icon">🔄</span>
-                                </div>
-                            </div>
-                            <div class="team-card-back">
-                                <h4>Melony Vidal - Personal</h4>
-                                <div class="personal-info">
-                                    <strong>Education:</strong>
-                                    Master's in Finance and Business Analytics, CPA certified
-                                    
-                                    <strong>Interests:</strong>
-                                    Financial technology, sustainable business practices, data-driven decision making
-                                    
-                                    <strong>Fun Fact:</strong>
-                                    Implemented the company's first automated financial reporting system, reducing processing time by 80%
-                                    
-                                    <strong>Quote:</strong>
-                                    "Smart financial management is the foundation of any successful technology company."
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="team-card">
-                        <div class="team-card-inner">
-                            <div class="team-card-front">
-                                <div class="profile-image">
-                                    <img src="images/jayla-vidal.jpg" alt="Jayla Vidal - Content Creator Director">
-                                </div>
-                                <h4>Jayla Vidal</h4>
-                                <div class="role">Content Creator Director</div>
-                                <p class="bio">Dedicated to building strong relationships with our clients and ensuring exceptional customer experiences. Jayla leads our customer success initiatives and maintains our high service satisfaction standards.</p>
-                                <div class="flip-indicator">
-                                    <span class="flip-icon">🔄</span>
-                                </div>
-                            </div>
-                            <div class="team-card-back">
-                                <h4>Jayla Vidal - Personal</h4>
-                                <div class="personal-info">
-                                    <strong>Education:</strong>
-                                    Bachelor's in Digital Marketing and Communications
-                                    
-                                    <strong>Interests:</strong>
-                                    Creative storytelling, social media strategy, brand development, photography
-                                    
-                                    <strong>Fun Fact:</strong>
-                                    Created viral content that increased our social media following by 300% in six months
-                                    
-                                    <strong>Quote:</strong>
-                                    "Great content doesn't just inform—it inspires and connects people to your mission."
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="team-card">
-                        <div class="team-card-inner">
-                            <div class="team-card-front">
-                                <div class="profile-image">
-                                    <img src="images/dominic-vidal.jpg" alt="Dominic Vidal - Digital Media Director">
-                                </div>
-                                <h4>Dominic Vidal</h4>
-                                <div class="role">Digital Media Director</div>
-                                <p class="bio">Managing our comprehensive support operations and ensuring clients receive timely, expert assistance. Dominic leads our technical support team and maintains our 24/7 service excellence commitment.</p>
-                                <div class="flip-indicator">
-                                    <span class="flip-icon">🔄</span>
-                                </div>
-                            </div>
-                            <div class="team-card-back">
-                                <h4>Dominic Vidal - Personal</h4>
-                                <div class="personal-info">
-                                    <strong>Education:</strong>
-                                    Bachelor's in Digital Media Production and Graphic Design
-                                    
-                                    <strong>Interests:</strong>
-                                    Video production, UI/UX design, multimedia storytelling, gaming technology
-                                    
-                                    <strong>Fun Fact:</strong>
-                                    Designed and produced the company's award-winning product demo videos
-                                    
-                                    <strong>Quote:</strong>
-                                    "Visual storytelling can turn complex technology into compelling, understandable experiences."
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <!-- Consulting -->
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>IT Consulting</h3>
+                    <p>Expert guidance to align technology with your business objectives.</p>
+                    <ul class="service-features">
+                        <li>Digital transformation</li>
+                        <li>Technology roadmap</li>
+                        <li>Vendor selection</li>
+                        <li>Training & workshops</li>
+                    </ul>
+                    <a href="services.html#consulting" class="learn-more-btn">Learn more</a>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- Stats Section -->
+    <section class="stats-section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <form class="contact-form" id="contactForm">
-				<input type="text" id="website" name="website" style="display:none;" tabindex="-1" autocomplete="off">
-    
-				<div class="form-group">
-					<label for="name">Your Name</label>
-					<input type="text" id="name" name="name" required autocomplete="name">
-				</div>
-    
-				<div class="form-group">
-					<label for="email">Email Address</label>
-					<input type="email" id="email" name="email" required autocomplete="email">
-				</div>
-    
-				<div class="form-group">
-					<label for="message">Message</label>
-					<textarea id="message" name="message" rows="5" required autocomplete="off"></textarea>
-				</div>
-    
-				<button type="submit" class="submit-button">Send Message</button>
-			</form>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
         </div>
     </section>
     
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 IQ Smart Management. All rights reserved.</p>
-        <p>Powered by Cloudflare & Synology NAS</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About IQ Smart</h4>
+                <p>Leading provider of intelligent management solutions, helping businesses thrive in the digital age.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html#business-intelligence">Business Intelligence</a></li>
+                    <li><a href="services.html#cloud-solutions">Cloud Solutions</a></li>
+                    <li><a href="services.html#security">Security Services</a></li>
+                    <li><a href="services.html#automation">Smart Automation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li>📞 (123) 456-7890</li>
+                    <li>✉️ info@iqsmartmanagement.com</li>
+                    <li>📍 Your City, State</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 IQ Smart Management. All rights reserved.</p>
+            <p>Powered by Cloudflare & Synology NAS</p>
+        </div>
     </footer>
     
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1080,176 +212,6 @@
                 }
             });
         });
-
-        // Feature card flip functionality
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.classList.toggle('flipped');
-            });
-        });
-
-        // Better image fallback handling
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle profile image fallbacks
-            const profileImages = document.querySelectorAll('.profile-image img');
-            
-            profileImages.forEach(img => {
-                const testImage = new Image();
-                const initials = img.alt.match(/\b\w/g)?.join('') || 'N/A';
-                
-                testImage.onload = function() {
-                    // Image loaded successfully, keep the img element
-                    img.style.display = 'block';
-                };
-                
-                testImage.onerror = function() {
-                    // Image failed to load, show initials
-                    img.style.display = 'none';
-                    img.parentElement.innerHTML = `<span class="initials">${initials}</span>`;
-                    img.parentElement.classList.add('fallback-initials');
-                };
-                
-                testImage.src = img.src;
-            });
-        });
-
-        // Team card flip functionality
-        document.querySelectorAll('.team-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.classList.toggle('flipped');
-            });
-        });
-        
-        // Form submission handler with API integration
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    // Get form elements
-    const submitButton = this.querySelector('.submit-button');
-    const originalButtonText = submitButton.textContent;
-    
-    // Disable button and show loading state
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
-    
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value,
-        website: document.getElementById('website')?.value || '' // Honeypot field
-    };
-    
-    try {
-        // Production API URL - replace with your actual domain/IP
-        const API_URL = 'https://contact-email-sender.cyberque80.workers.dev';
-        
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
-        
-        const data = await response.json();
-        
-        if (response.ok) {
-            // Success! Show success message
-            showNotification('success', data.message || 'Message sent successfully!');
-            
-            // Reset form
-            this.reset();
-        } else {
-            // Error from server
-            showNotification('error', data.error || 'Something went wrong. Please try again.');
-            
-            // Show validation errors if any
-            if (data.errors && Array.isArray(data.errors)) {
-                data.errors.forEach(error => {
-                    console.error('Validation error:', error);
-                });
-            }
-        }
-    } catch (error) {
-        // Network or other error
-        console.error('Error submitting form:', error);
-        showNotification('error', 'Unable to send message. Please check your connection and try again.');
-    } finally {
-        // Re-enable button
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-    }
-});
-
-// Notification system
-function showNotification(type, message) {
-    // Remove any existing notifications
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.textContent = message;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 20px;
-        border-radius: 5px;
-        color: white;
-        font-weight: 500;
-        z-index: 9999;
-        animation: slideIn 0.3s ease;
-        max-width: 300px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        background-color: ${type === 'success' ? '#10b981' : '#ef4444'};
-    `;
-    
-    // Add to page
-    document.body.appendChild(notification);
-    
-    // Remove after 5 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 5000);
-}
-
-// Add animation styles for notifications
-if (!document.getElementById('notification-styles')) {
-    const style = document.createElement('style');
-    style.id = 'notification-styles';
-    style.textContent = `
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-}
         
         // Add scroll effect to navigation
         window.addEventListener('scroll', function() {
@@ -1261,8 +223,9 @@ if (!document.getElementById('notification-styles')) {
             }
         });
     </script>
+    
     <!-- Cloudflare Web Analytics -->
-     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc72f785857e4cc091f5680c36f32132"}'></script>
-     <!-- End Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc72f785857e4cc091f5680c36f32132"}'></script>
+    <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
