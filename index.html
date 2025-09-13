@@ -289,7 +289,7 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -302,7 +302,8 @@
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             perspective: 1000px;
-            height: 350px;
+            min-height: 400px;
+            height: auto;
         }
 
         .team-card:hover {
@@ -313,7 +314,7 @@
         .team-card-inner {
             position: relative;
             width: 100%;
-            height: 100%;
+            min-height: 400px;
             text-align: center;
             transition: transform 0.8s;
             transform-style: preserve-3d;
@@ -326,13 +327,14 @@
         .team-card-front, .team-card-back {
             position: absolute;
             width: 100%;
-            height: 100%;
+            min-height: 400px;
             backface-visibility: hidden;
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+            overflow: hidden;
         }
 
         .team-card-back {
@@ -345,19 +347,22 @@
             color: white;
             margin-bottom: 1rem;
             font-size: 1.25rem;
+            flex-shrink: 0;
         }
 
         .team-card-back .personal-info {
             text-align: left;
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            flex-grow: 1;
+            overflow-y: auto;
         }
 
         .team-card-back .personal-info strong {
             color: #10b981;
             display: block;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
         }
 
         .team-card-back .personal-info strong:first-child {
@@ -900,7 +905,7 @@
                         <div class="team-card-inner">
                             <div class="team-card-front">
                                 <div class="profile-image">
-                                    <img src="images/quinn-vidal.jpg" alt="Quinn Vidal - CEO & Founder" onerror="this.parentElement.innerHTML='QV'">
+                                    <img src="images/quinn-vidal.jpg" alt="Quinn Vidal - CEO & Founder">
                                 </div>
                                 <h4>Quinn Vidal</h4>
                                 <div class="role">CEO & Founder</div>
@@ -932,7 +937,7 @@
                         <div class="team-card-inner">
                             <div class="team-card-front">
                                 <div class="profile-image">
-                                    <img src="images/melony-vidal.jpg" alt="Melony Vidal - President & CFO" onerror="this.parentElement.innerHTML='MV'">
+                                    <img src="images/melony-vidal.jpg" alt="Melony Vidal - President & CFO">
                                 </div>
                                 <h4>Melony Vidal</h4>
                                 <div class="role">President & CFO</div>
@@ -964,7 +969,7 @@
                         <div class="team-card-inner">
                             <div class="team-card-front">
                                 <div class="profile-image">
-                                    <img src="images/jayla-vidal.jpg" alt="Jayla Vidal - Content Creator Director" onerror="this.parentElement.innerHTML='JV'">
+                                    <img src="images/jayla-vidal.jpg" alt="Jayla Vidal - Content Creator Director">
                                 </div>
                                 <h4>Jayla Vidal</h4>
                                 <div class="role">Content Creator Director</div>
@@ -996,7 +1001,7 @@
                         <div class="team-card-inner">
                             <div class="team-card-front">
                                 <div class="profile-image">
-                                    <img src="images/dominic-vidal.jpg" alt="Dominic Vidal - Digital Media Director" onerror="this.parentElement.innerHTML='DV'">
+                                    <img src="images/dominic-vidal.jpg" alt="Dominic Vidal - Digital Media Director">
                                 </div>
                                 <h4>Dominic Vidal</h4>
                                 <div class="role">Digital Media Director</div>
@@ -1080,6 +1085,31 @@
         document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('click', function() {
                 this.classList.toggle('flipped');
+            });
+        });
+
+        // Better image fallback handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle profile image fallbacks
+            const profileImages = document.querySelectorAll('.profile-image img');
+            
+            profileImages.forEach(img => {
+                const testImage = new Image();
+                const initials = img.alt.match(/\b\w/g)?.join('') || 'N/A';
+                
+                testImage.onload = function() {
+                    // Image loaded successfully, keep the img element
+                    img.style.display = 'block';
+                };
+                
+                testImage.onerror = function() {
+                    // Image failed to load, show initials
+                    img.style.display = 'none';
+                    img.parentElement.innerHTML = `<span class="initials">${initials}</span>`;
+                    img.parentElement.classList.add('fallback-initials');
+                };
+                
+                testImage.src = img.src;
             });
         });
 
