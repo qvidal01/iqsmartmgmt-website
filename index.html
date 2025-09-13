@@ -297,16 +297,72 @@
 
         .team-card {
             background: var(--white);
-            padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            perspective: 1000px;
+            height: 350px;
         }
 
         .team-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .team-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .team-card.flipped .team-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .team-card-front, .team-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .team-card-back {
+            background: var(--gradient);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .team-card-back h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .team-card-back .personal-info {
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .team-card-back .personal-info strong {
+            color: #10b981;
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-card-back .personal-info strong:first-child {
+            margin-top: 0;
         }
 
         .profile-image {
@@ -854,39 +910,135 @@
                 <h3 class="team-heading">Meet Our Team</h3>
                 <div class="team-grid">
                     <div class="team-card">
-                        <div class="profile-image">
-                            <img src="images/quinn-vidal.jpg" alt="Quinn Vidal - CEO & Founder" onerror="this.parentElement.innerHTML='QV'">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <div class="profile-image">
+                                    <img src="images/quinn-vidal.jpg" alt="Quinn Vidal - CEO & Founder" onerror="this.parentElement.innerHTML='QV'">
+                                </div>
+                                <h4>Quinn Vidal</h4>
+                                <div class="role">CEO & Founder</div>
+                                <p class="bio">Leading IQ Smart Management with a vision for innovative technology solutions. Quinn drives strategic initiatives and ensures our commitment to delivering exceptional intelligent management services to businesses of all sizes.</p>
+                                <div class="flip-indicator">
+                                    <span class="flip-icon">🔄</span>
+                                    <span>Click to flip</span>
+                                </div>
+                            </div>
+                            <div class="team-card-back">
+                                <h4>Quinn Vidal - Personal</h4>
+                                <div class="personal-info">
+                                    <strong>Education:</strong>
+                                    Bachelor's in Business Administration, focus on Technology Management
+                                    
+                                    <strong>Interests:</strong>
+                                    Innovation in AI and automation, strategic business development, emerging technologies
+                                    
+                                    <strong>Fun Fact:</strong>
+                                    Started coding at age 12 and built the first version of IQ Smart Management as a college project
+                                    
+                                    <strong>Quote:</strong>
+                                    "Technology should empower people, not replace them. Our goal is to make intelligent systems accessible to everyone."
+                                </div>
+                            </div>
                         </div>
-                        <h4>Quinn Vidal</h4>
-                        <div class="role">CEO & Founder</div>
-                        <p class="bio">Leading IQ Smart Management with a vision for innovative technology solutions. Quinn drives strategic initiatives and ensures our commitment to delivering exceptional intelligent management services to businesses of all sizes.</p>
                     </div>
                     
                     <div class="team-card">
-                        <div class="profile-image">
-                            <img src="images/melony-vidal.jpg" alt="Melony Vidal - President & CFO" onerror="this.parentElement.innerHTML='MV'">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <div class="profile-image">
+                                    <img src="images/melony-vidal.jpg" alt="Melony Vidal - President & CFO" onerror="this.parentElement.innerHTML='MV'">
+                                </div>
+                                <h4>Melony Vidal</h4>
+                                <div class="role">President & CFO</div>
+                                <p class="bio">Overseeing our technical operations and innovation roadmap. Melony ensures our technology infrastructure remains cutting-edge while maintaining the highest standards of security and performance.</p>
+                                <div class="flip-indicator">
+                                    <span class="flip-icon">🔄</span>
+                                    <span>Click to flip</span>
+                                </div>
+                            </div>
+                            <div class="team-card-back">
+                                <h4>Melony Vidal - Personal</h4>
+                                <div class="personal-info">
+                                    <strong>Education:</strong>
+                                    Master's in Finance and Business Analytics, CPA certified
+                                    
+                                    <strong>Interests:</strong>
+                                    Financial technology, sustainable business practices, data-driven decision making
+                                    
+                                    <strong>Fun Fact:</strong>
+                                    Implemented the company's first automated financial reporting system, reducing processing time by 80%
+                                    
+                                    <strong>Quote:</strong>
+                                    "Smart financial management is the foundation of any successful technology company."
+                                </div>
+                            </div>
                         </div>
-                        <h4>Melony Vidal</h4>
-                        <div class="role">President & CFO</div>
-                        <p class="bio">Overseeing our technical operations and innovation roadmap. Melony ensures our technology infrastructure remains cutting-edge while maintaining the highest standards of security and performance.</p>
                     </div>
                     
                     <div class="team-card">
-                        <div class="profile-image">
-                            <img src="images/jayla-vidal.jpg" alt="Jayla Vidal - Content Creator Director" onerror="this.parentElement.innerHTML='JV'">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <div class="profile-image">
+                                    <img src="images/jayla-vidal.jpg" alt="Jayla Vidal - Content Creator Director" onerror="this.parentElement.innerHTML='JV'">
+                                </div>
+                                <h4>Jayla Vidal</h4>
+                                <div class="role">Content Creator Director</div>
+                                <p class="bio">Dedicated to building strong relationships with our clients and ensuring exceptional customer experiences. Jayla leads our customer success initiatives and maintains our high service satisfaction standards.</p>
+                                <div class="flip-indicator">
+                                    <span class="flip-icon">🔄</span>
+                                    <span>Click to flip</span>
+                                </div>
+                            </div>
+                            <div class="team-card-back">
+                                <h4>Jayla Vidal - Personal</h4>
+                                <div class="personal-info">
+                                    <strong>Education:</strong>
+                                    Bachelor's in Digital Marketing and Communications
+                                    
+                                    <strong>Interests:</strong>
+                                    Creative storytelling, social media strategy, brand development, photography
+                                    
+                                    <strong>Fun Fact:</strong>
+                                    Created viral content that increased our social media following by 300% in six months
+                                    
+                                    <strong>Quote:</strong>
+                                    "Great content doesn't just inform—it inspires and connects people to your mission."
+                                </div>
+                            </div>
                         </div>
-                        <h4>Jayla Vidal</h4>
-                        <div class="role">Content Creator Director</div>
-                        <p class="bio">Dedicated to building strong relationships with our clients and ensuring exceptional customer experiences. Jayla leads our customer success initiatives and maintains our high service satisfaction standards.</p>
                     </div>
                     
                     <div class="team-card">
-                        <div class="profile-image">
-                            <img src="images/dominic-vidal.jpg" alt="Dominic Vidal - Digital Media Director" onerror="this.parentElement.innerHTML='DV'">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <div class="profile-image">
+                                    <img src="images/dominic-vidal.jpg" alt="Dominic Vidal - Digital Media Director" onerror="this.parentElement.innerHTML='DV'">
+                                </div>
+                                <h4>Dominic Vidal</h4>
+                                <div class="role">Digital Media Director</div>
+                                <p class="bio">Managing our comprehensive support operations and ensuring clients receive timely, expert assistance. Dominic leads our technical support team and maintains our 24/7 service excellence commitment.</p>
+                                <div class="flip-indicator">
+                                    <span class="flip-icon">🔄</span>
+                                    <span>Click to flip</span>
+                                </div>
+                            </div>
+                            <div class="team-card-back">
+                                <h4>Dominic Vidal - Personal</h4>
+                                <div class="personal-info">
+                                    <strong>Education:</strong>
+                                    Bachelor's in Digital Media Production and Graphic Design
+                                    
+                                    <strong>Interests:</strong>
+                                    Video production, UI/UX design, multimedia storytelling, gaming technology
+                                    
+                                    <strong>Fun Fact:</strong>
+                                    Designed and produced the company's award-winning product demo videos
+                                    
+                                    <strong>Quote:</strong>
+                                    "Visual storytelling can turn complex technology into compelling, understandable experiences."
+                                </div>
+                            </div>
                         </div>
-                        <h4>Dominic Vidal</h4>
-                        <div class="role">Digital Media Director</div>
-                        <p class="bio">Managing our comprehensive support operations and ensuring clients receive timely, expert assistance. Dominic leads our technical support team and maintains our 24/7 service excellence commitment.</p>
                     </div>
                 </div>
             </div>
@@ -943,6 +1095,13 @@
 
         // Feature card flip functionality
         document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+            });
+        });
+
+        // Team card flip functionality
+        document.querySelectorAll('.team-card').forEach(card => {
             card.addEventListener('click', function() {
                 this.classList.toggle('flipped');
             });
