@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - IQ Smart Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portal-styles.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="user-info">
+                <img id="user-avatar" src="" alt="User" class="user-avatar">
+                <span id="user-name">Loading...</span>
+            </div>
+            <button id="logout-btn" class="logout-btn">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">IQ Smart Management - Client Portal</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Main Site</a></li>
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard">
+        <div class="dashboard-container">
+            <h1>Welcome to Your Dashboard</h1>
+            <p class="dashboard-subtitle">Access your subscribed applications below</p>
+
+            <!-- Apps Grid -->
+            <div class="apps-grid" id="apps-grid">
+                <!-- Apps will be dynamically loaded here -->
+            </div>
+
+            <!-- Empty State (shown when no apps) -->
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <h2>No Applications Yet</h2>
+                <p>You don't have any subscribed applications at the moment.</p>
+                <p>Please contact our team to get started with our services.</p>
+                <a href="contact.html" class="cta-button">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 IQ Smart Management. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK and Dashboard Script -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import {
+            getFirestore,
+            doc,
+            getDoc
+        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase configuration - Replace with your config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Sample apps data (replace with actual data from your database)
+        const sampleApps = [
+            {
+                id: 'nextcloud',
+                name: 'Nextcloud',
+                description: 'File storage and collaboration',
+                icon: '☁️',
+                url: 'https://nextcloud.yourdomain.com',
+                color: '#0082c9'
+            },
+            {
+                id: 'gitlab',
+                name: 'GitLab',
+                description: 'Code repository and CI/CD',
+                icon: '🦊',
+                url: 'https://gitlab.yourdomain.com',
+                color: '#fc6d26'
+            },
+            {
+                id: 'mattermost',
+                name: 'Mattermost',
+                description: 'Team communication platform',
+                icon: '💬',
+                url: 'https://mattermost.yourdomain.com',
+                color: '#0058cc'
+            },
+            {
+                id: 'jitsi',
+                name: 'Jitsi Meet',
+                description: 'Video conferencing solution',
+                icon: '📹',
+                url: 'https://meet.yourdomain.com',
+                color: '#1d76ba'
+            },
+            {
+                id: 'bitwarden',
+                name: 'Bitwarden',
+                description: 'Password management',
+                icon: '🔒',
+                url: 'https://vault.yourdomain.com',
+                color: '#175ddc'
+            },
+            {
+                id: 'rocketchat',
+                name: 'Rocket.Chat',
+                description: 'Team collaboration',
+                icon: '🚀',
+                url: 'https://chat.yourdomain.com',
+                color: '#f5455c'
+            }
+        ];
+
+        // Check authentication
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                // Not authenticated, redirect to login
+                window.location.href = 'portal-login.html';
+                return;
+            }
+
+            // Update user info in UI
+            document.getElementById('user-name').textContent = user.displayName || user.email;
+            if (user.photoURL) {
+                document.getElementById('user-avatar').src = user.photoURL;
+            } else {
+                document.getElementById('user-avatar').style.display = 'none';
+            }
+
+            // Load user's apps
+            await loadUserApps(user.uid);
+        });
+
+        // Load user's subscribed apps
+        async function loadUserApps(userId) {
+            try {
+                // In production, you would fetch this from Firestore
+                // const userDoc = await getDoc(doc(db, 'users', userId));
+                // const userData = userDoc.data();
+                // const subscribedApps = userData?.subscribedApps || [];
+
+                // For demo, we'll show sample apps
+                // Remove this and uncomment above for production
+                const subscribedApps = sampleApps.slice(0, 3); // Show first 3 apps as demo
+
+                const appsGrid = document.getElementById('apps-grid');
+                const emptyState = document.getElementById('empty-state');
+
+                if (subscribedApps.length === 0) {
+                    appsGrid.style.display = 'none';
+                    emptyState.style.display = 'block';
+                } else {
+                    appsGrid.style.display = 'grid';
+                    emptyState.style.display = 'none';
+
+                    appsGrid.innerHTML = subscribedApps.map(app => `
+                        <div class="app-card" style="--app-color: ${app.color}">
+                            <div class="app-icon">${app.icon}</div>
+                            <h3>${app.name}</h3>
+                            <p>${app.description}</p>
+                            <a href="${app.url}" target="_blank" class="app-launch-btn">Launch App →</a>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading apps:', error);
+                // Show error state
+                document.getElementById('apps-grid').innerHTML = `
+                    <div class="error-message">
+                        <p>Error loading applications. Please refresh the page.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                sessionStorage.removeItem('user');
+                window.location.href = 'portal-login.html';
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal - IQ Smart Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portal-styles.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="contact-info">
+                <a href="tel:+1234567890">📞 (123) 456-7890</a>
+                <a href="mailto:info@iqsmartmanagement.com">✉️ info@iqsmartmanagement.com</a>
+            </div>
+            <a href="index.html" class="client-portal-btn">← Back to Main Site</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">IQ Smart Management</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="portal-login">
+        <div class="login-container">
+            <div class="login-card">
+                <h1>Client Portal</h1>
+                <p class="login-subtitle">Sign in to access your subscribed applications</p>
+
+                <div class="auth-buttons">
+                    <button id="google-signin" class="auth-btn google-btn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                        <span>Continue with Google</span>
+                    </button>
+
+                    <button id="microsoft-signin" class="auth-btn microsoft-btn">
+                        <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21">
+                            <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+                            <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+                            <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+                            <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+                        </svg>
+                        <span>Continue with Microsoft</span>
+                    </button>
+
+                    <button id="apple-signin" class="auth-btn apple-btn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.645 13.51c-.027.094-.057.185-.092.274a8.396 8.396 0 01-.613 1.385 5.352 5.352 0 01-.79 1.084c-.34.381-.62.574-.84.58-.22.005-.515-.062-.885-.198-.369-.136-.708-.204-1.017-.204-.324 0-.672.068-1.043.204-.371.136-.67.207-.896.212-.347.01-.693-.138-1.04-.444a5.546 5.546 0 01-.878-1.148 9.382 9.382 0 01-.926-1.884A8.853 8.853 0 016 10.275c0-1.146.248-2.134.743-2.964a4.367 4.367 0 011.558-1.567 4.178 4.178 0 012.106-.596c.232 0 .537.072.913.213.377.142.619.213.726.213.08 0 .35-.084.81-.25.437-.155.806-.22 1.107-.192 1.635.131 2.863.776 3.683 1.935-1.463.885-2.186 2.124-2.17 3.716.015 1.239.462 2.27 1.341 3.094.4.382.846.677.828.633zm-1.928-12.263c0 .972-.355 1.88-1.064 2.724-.856.998-1.892 1.574-3.014 1.484a3.04 3.04 0 01-.023-.369c0-.933.406-1.93 1.127-2.747.36-.414.818-.758 1.374-1.032.555-.27 1.08-.419 1.574-.446.015.129.026.257.026.386z" fill="currentColor"/>
+                        </svg>
+                        <span>Continue with Apple</span>
+                    </button>
+                </div>
+
+                <div class="divider">
+                    <span>Secure authentication powered by Firebase</span>
+                </div>
+
+                <div class="login-info">
+                    <p>✓ No password needed</p>
+                    <p>✓ Secure OAuth 2.0 authentication</p>
+                    <p>✓ Your data is encrypted and protected</p>
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 IQ Smart Management. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import {
+            getAuth,
+            signInWithPopup,
+            GoogleAuthProvider,
+            OAuthProvider,
+            onAuthStateChanged
+        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        // Firebase configuration - Replace with your config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Google Sign-In
+        document.getElementById('google-signin').addEventListener('click', async () => {
+            const provider = new GoogleAuthProvider();
+            try {
+                const result = await signInWithPopup(auth, provider);
+                handleSuccessfulLogin(result.user);
+            } catch (error) {
+                showError('Google sign-in failed. Please try again.');
+                console.error('Google sign-in error:', error);
+            }
+        });
+
+        // Microsoft Sign-In
+        document.getElementById('microsoft-signin').addEventListener('click', async () => {
+            const provider = new OAuthProvider('microsoft.com');
+            try {
+                const result = await signInWithPopup(auth, provider);
+                handleSuccessfulLogin(result.user);
+            } catch (error) {
+                showError('Microsoft sign-in failed. Please try again.');
+                console.error('Microsoft sign-in error:', error);
+            }
+        });
+
+        // Apple Sign-In
+        document.getElementById('apple-signin').addEventListener('click', async () => {
+            const provider = new OAuthProvider('apple.com');
+            try {
+                const result = await signInWithPopup(auth, provider);
+                handleSuccessfulLogin(result.user);
+            } catch (error) {
+                showError('Apple sign-in failed. Please try again.');
+                console.error('Apple sign-in error:', error);
+            }
+        });
+
+        // Handle successful login
+        function handleSuccessfulLogin(user) {
+            // Store user info in sessionStorage
+            sessionStorage.setItem('user', JSON.stringify({
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL
+            }));
+
+            // Redirect to dashboard
+            window.location.href = 'portal-dashboard.html';
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Check if user is already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                handleSuccessfulLogin(user);
+            }
+        });
+    </script>
+</body>
+</html>
